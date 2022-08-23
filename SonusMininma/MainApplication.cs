@@ -2,12 +2,15 @@ namespace SonusMininma
 {
     public partial class MainApplication : Form
     {
+        System.Media.SoundPlayer player = new();
         public MainApplication()
         {
             InitializeComponent();
-
+            player.SoundLocation = Soundpicker.soundName; 
             this.pictureBox1.Image = Soundpicker.ps;
             this.pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -29,7 +32,8 @@ namespace SonusMininma
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            player.Play();
         }
+
     }
 }

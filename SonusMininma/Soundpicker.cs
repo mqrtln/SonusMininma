@@ -12,13 +12,14 @@ namespace SonusMininma
 {
     public partial class Soundpicker : Form
     {
-        public static Image? ps; 
+        public static Image? ps;
+        public static string? soundName;
+        System.Media.SoundPlayer player = new();
         public Soundpicker()
         {
             InitializeComponent();
 
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             MainApplication ma = new();
@@ -56,8 +57,10 @@ namespace SonusMininma
                 string file = openFileDialog.FileName;
                 try
                 {
-                    this.button2.Text = file; 
-                 
+                    this.button2.Text = file;
+                    player.SoundLocation = file;
+                    soundName = player.SoundLocation;
+
                 }
                 catch (IOException) { }
             }
@@ -67,9 +70,15 @@ namespace SonusMininma
         private void button3_Click(object sender, EventArgs e)
         {
             ps = pictureBox1.Image;
+            soundName = button2.Text; 
             MainApplication ma = new();
             this.Hide();
             ma.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            player.Play();
         }
     }
 }
